@@ -25,18 +25,9 @@ class PackagesManager:
         Check if server has addon access for resource limits feature
         Returns True if addons are available, False otherwise
         """
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        addon_data = {
-            "name": "all",
-            "IP": ACLManager.GetServerIP()
-        }
-        import requests
-        try:
-            response = requests.post(url, data=json.dumps(addon_data), timeout=5)
-            Status = response.json().get('status', 0)
-        except Exception:
-            Status = 0
-        return (Status == 1) or (ProcessUtilities.decideServer() == ProcessUtilities.ent)
+        # Paywall removed in this build — resource-limit / add-on features are
+        # always available; no remote entitlement check is performed.
+        return True
 
     def packagesHome(self):
         proc = httpProc(self.request, 'packages/index.html',

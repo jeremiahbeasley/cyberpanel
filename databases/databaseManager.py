@@ -106,15 +106,7 @@ class DatabaseManager:
             from plogical.processUtilities import ProcessUtilities
             if ProcessUtilities.decideServer() == ProcessUtilities.OLS:
 
-                url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-                data = {
-                    "name": "Filemanager",
-                    "IP": ACLManager.fetchIP()
-                }
-
-                import requests
-                response = requests.post(url, data=json.dumps(data))
-                Status = response.json()['status']
+                Status = 1  # paywall removed — feature unlocked in this build
 
                 if (Status == 1):
                     template = 'baseTemplate/FileManager.html'

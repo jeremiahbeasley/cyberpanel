@@ -1233,15 +1233,7 @@ def installStatusMailScanner(request):
 ###Rspamd
 
 def Rspamd(request):
-    url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-    data = {
-        "name": "email-debugger",
-        "IP": ACLManager.GetServerIP()
-    }
-
-    import requests
-    response = requests.post(url, data=json.dumps(data))
-    Status = response.json()['status']
+    Status = 1  # paywall removed — feature unlocked in this build
 
     if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
         checkIfRspamdInstalled = 0
@@ -1270,15 +1262,7 @@ def installRspamd(request):
         else:
             return ACLManager.loadErrorJson()
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "email-debugger",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
             try:
@@ -1365,15 +1349,7 @@ def fetchRspamdSettings(request):
         else:
             return ACLManager.loadErrorJson('fetchStatus', 0)
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "email-debugger",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
             try:
@@ -1884,15 +1860,7 @@ def RestartRspamd(request):
 ##Email Debugger
 
 def EmailDebugger(request):
-    url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-    data = {
-        "name": "email-debugger",
-        "IP": ACLManager.GetServerIP()
-    }
-
-    import requests
-    response = requests.post(url, data=json.dumps(data))
-    Status = response.json()['status']
+    Status = 1  # paywall removed — feature unlocked in this build
 
     if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
         userID = request.session['userID']

@@ -1052,6 +1052,9 @@ class ACLManager:
 
     @staticmethod
     def CheckForPremFeature(feature):
+        # All premium/add-on gates are removed in this build; every feature
+        # is unlocked and no remote entitlement check is performed.
+        return 1
         try:
 
             if ProcessUtilities.decideServer() == ProcessUtilities.ent:

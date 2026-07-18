@@ -933,15 +933,7 @@ class backupUtilities:
 
                                     ### take care of apache conf
 
-                                    url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-                                    data = {
-                                        "name": "all",
-                                        "IP": ACLManager.GetServerIP()
-                                    }
-
-                                    import requests
-                                    response = requests.post(url, data=json.dumps(data))
-                                    Status = response.json()['status']
+                                    Status = 1  # paywall removed — feature unlocked in this build
 
                                     if (Status == 1):
 
@@ -1198,15 +1190,7 @@ class backupUtilities:
 
                     ### apache starts here
 
-                    url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-                    data = {
-                        "name": "all",
-                        "IP": ACLManager.GetServerIP()
-                    }
-
-                    import requests
-                    response = requests.post(url, data=json.dumps(data))
-                    Status = response.json()['status']
+                    Status = 1  # paywall removed — feature unlocked in this build
 
                     if (Status == 1):
                         confPathApache = completPath + '/apache.conf'

@@ -42,10 +42,12 @@
             <span class="cp-qa-text"><span class="cp-qa-title">{% trans "Back Up" %}</span><span class="cp-qa-sub">{% trans "Protect your data" %}</span></span>
         </a>
         {% endif %}
+        {% if not cosmetic.HidePromotions %}
         <a class="cp-qa-card" href="{% url 'buildServices' %}">
             <span class="cp-qa-ic" style="background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;"><i class="fas fa-rocket" aria-hidden="true"></i></span>
             <span class="cp-qa-text"><span class="cp-qa-title">{% trans "Build Services" %}</span><span class="cp-qa-sub">{% trans "Let us build it" %}</span></span>
         </a>
+        {% endif %}
     </div>
 
     <!-- Onboarding checklist (shown when there are no websites yet) -->
@@ -88,6 +90,7 @@
     </div>
 
     <!-- Dismissible Build Services promo card -->
+    {% if not cosmetic.HidePromotions %}
     <div class="cp-build-card" id="cp-build-card" hidden>
         <button class="cp-build-x" type="button" id="cp-build-card-x" aria-label="{% trans 'Dismiss' %}"><i class="fas fa-times" aria-hidden="true"></i></button>
         <i class="fas fa-rocket cp-build-bg" aria-hidden="true"></i>
@@ -98,6 +101,7 @@
             <a class="cp-build-btn ghost" href="https://cyberpanel.net/custom-development?utm_source=cyberpanel&utm_medium=panel&utm_campaign=dashboard_card" target="_blank" rel="noopener">{% trans "Get a quote" %}</a>
         </div>
     </div>
+    {% endif %}
     <script>
     (function () {
         try {

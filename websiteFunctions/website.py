@@ -56,22 +56,17 @@ class WebsiteManager:
         self.domain = domain
         self.childDomain = childDomain
 
+    @staticmethod
+    def apacheBackendAvailable():
+        # Paywall removed in this build — the OpenLiteSpeed + Apache backend
+        # option (create website / create domain) is always available.
+        return 1
+
     def createWebsite(self, request=None, userID=None, data=None):
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "all",
-            "IP": ACLManager.GetServerIP()
-        }
+        Status = 1  # paywall removed — feature unlocked in this build
 
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
-
-        test_domain_status = 0
-
-        if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
-            test_domain_status = 1
+        test_domain_status = self.apacheBackendAvailable()
 
         currentACL = ACLManager.loadedACL(userID)
         adminNames = ACLManager.loadAllUsers(userID)
@@ -87,15 +82,7 @@ class WebsiteManager:
         return proc.render()
 
     def WPCreate(self, request=None, userID=None, data=None):
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "wp-manager",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
@@ -219,15 +206,7 @@ class WebsiteManager:
 
         try:
 
-            url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-            data = {
-                "name": "wp-manager",
-                "IP": ACLManager.GetServerIP()
-            }
-
-            import requests
-            response = requests.post(url, data=json.dumps(data))
-            Status = response.json()['status']
+            Status = 1  # paywall removed — feature unlocked in this build
 
             rnpss = randomPassword.generate_pass(10)
 
@@ -441,15 +420,7 @@ class WebsiteManager:
         currentACL = ACLManager.loadedACL(userID)
         admin = Administrator.objects.get(pk=userID)
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "wp-manager",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
 
@@ -522,15 +493,7 @@ class WebsiteManager:
         php = PHPManager.getPHPString(WPobj.owner.phpSelection)
         FinalPHPPath = '/usr/local/lsws/lsphp%s/bin/php' % (php)
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "wp-manager",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
 
@@ -790,20 +753,9 @@ class WebsiteManager:
                 defaultDomain='NONE'
 
 
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "all",
-            "IP": ACLManager.GetServerIP()
-        }
+        Status = 1  # paywall removed — feature unlocked in this build
 
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
-
-        test_domain_status = 0
-
-        if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
-            test_domain_status = 1
+        test_domain_status = self.apacheBackendAvailable()
 
         rnpss = randomPassword.generate_pass(10)
         proc = httpProc(request, 'websiteFunctions/createDomain.html',
@@ -3576,18 +3528,7 @@ context /cyberpanel_suspension_page.html {
                 Data['ftp'] = 0
 
             # Add-on check logic (copied from sshAccess)
-            url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-            addon_data = {
-                "name": "all",
-                "IP": ACLManager.GetServerIP()
-            }
-            import requests
-            import json
-            try:
-                response = requests.post(url, data=json.dumps(addon_data))
-                Status = response.json().get('status', 0)
-            except Exception:
-                Status = 0
+            Status = 1  # paywall removed — feature unlocked in this build
             Data['has_addons'] = bool((Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent)
 
             # SSL check (self-signed logic)
@@ -5786,18 +5727,7 @@ StrictHostKeyChecking no
             CyberCPLogFileWriter.writeLog(f"Failed to ensure fastapi_ssh_server is running: {e}")
 
         # Add-on check logic
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "all",
-            "IP": ACLManager.GetServerIP()
-        }
-        import requests
-        import json
-        try:
-            response = requests.post(url, data=json.dumps(data))
-            Status = response.json().get('status', 0)
-        except Exception:
-            Status = 0
+        Status = 1  # paywall removed — feature unlocked in this build
         has_addons = (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent
 
         from plogical.CyberCPLogFileWriter import CyberCPLogFileWriter
@@ -7699,15 +7629,7 @@ StrictHostKeyChecking no
         return proc.render()
 
     def CreateDockersite(self, request=None, userID=None, data=None):
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "docker-manager",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
             adminNames = ACLManager.loadAllUsers(userID)
@@ -8039,15 +7961,7 @@ StrictHostKeyChecking no
             return HttpResponse(final_json)
 
     def Dockersitehome(self, request=None, userID=None, data=None, DeleteID=None):
-        url = "https://platform.cyberpersons.com/CyberpanelAdOns/Adonpermission"
-        data = {
-            "name": "docker-manager",
-            "IP": ACLManager.GetServerIP()
-        }
-
-        import requests
-        response = requests.post(url, data=json.dumps(data))
-        Status = response.json()['status']
+        Status = 1  # paywall removed — feature unlocked in this build
 
         if (Status == 1) or ProcessUtilities.decideServer() == ProcessUtilities.ent:
             currentACL = ACLManager.loadedACL(userID)
